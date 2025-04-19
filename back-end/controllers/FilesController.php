@@ -2,6 +2,7 @@
 
 require_once 'common/jwt.php';
 require_once 'models/File.php';
+require_once './common/jwt.php';
 
 class FilesController {
     private $file;

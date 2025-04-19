@@ -2,20 +2,22 @@
 
 require_once './core/db.php';
 require_once './models/Project.php';
-require_once './JwtAuth.php';  // Asegúrate de cargar la clase JwtAuth
+require_once './common/jwt.php';
 
-class ProjectsController {
+class ProjectsController
+{
     private $project;
     private $jwtAuth;
 
-    public function __construct() {
+    public function __construct()
+    {
         global $conn;
         $this->project = new Project($conn);
-        $this->jwtAuth = new JwtAuth();  // Crear instancia de JwtAuth
+        $this->jwtAuth = new JwtAuth();
     }
 
-    // Función para validar JWT
-    private function validateJWT() {
+    private function validateJWT()
+    {
         // Obtener el token desde el encabezado Authorization
         $headers = apache_request_headers();
         if (!isset($headers['Authorization'])) {
@@ -42,7 +44,8 @@ class ProjectsController {
     }
 
     // 🟢 Crear proyecto (POST)
-    public function createProject() {
+    public function createProject()
+    {
         // Validar JWT
         $this->validateJWT();
 
@@ -61,29 +64,40 @@ class ProjectsController {
     }
 
     // 📋 Ver todos los proyectos de un usuario (GET)
-    public function getUserProjects($userId) {
+    public function getUserProjects()
+    {
         // Validar JWT
         $this->validateJWT();
+
+
+        $userId = $_GET['id'];
 
         $projects = $this->project->getByUser($userId);
         echo json_encode($projects);
     }
 
     // 🔍 Ver detalle de un proyecto (GET /id)
-    public function getProject($projectId) {
+    public function getProject()
+    {
         // Validar JWT
         $this->validateJWT();
+
+        $projectId = $_GET['id'];
+
 
         $project = $this->project->getById($projectId);
         echo json_encode($project);
     }
 
     // ✏️ Editar proyecto (PUT)
-    public function updateProject($projectId) {
+    public function updateProject()
+    {
         // Validar JWT
         $this->validateJWT();
 
         $data = json_decode(file_get_contents("php://input"), true);
+
+        $projectId = $_GET['id'];
 
         $title = $data['titulo'];
         $description = $data['descripcion'];
@@ -97,9 +111,18 @@ class ProjectsController {
     }
 
     // 🗑️ Eliminar proyecto (DELETE)
-    public function deleteProject($projectId) {
+    public function deleteProject()
+    {
         // Validar JWT
         $this->validateJWT();
+
+        $projectId = $_GET['id'] ?? null;
+
+        if (!$projectId) {
+            http_response_code(400);
+            echo json_encode(['error' => 'ID de proyecto no proporcionado']);
+            return;
+        }
 
         $result = $this->project->delete($projectId);
         echo json_encode(['success' => $result]);

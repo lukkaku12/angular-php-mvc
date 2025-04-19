@@ -1,0 +1,23 @@
+<div class="dashboard-container">
+    <h1>Bienvenido al Dashboard</h1>
+
+    <section class="projects-section">
+      <h2>Proyectos del Usuario</h2>
+      <button (click)="goCreateProject()">Crear un Proyecto</button>
+      <div *ngIf="ProjectsOwnedByUser.length > 0; else noProjects">
+        <ul>
+          <li *ngFor="let project of ProjectsOwnedByUser">
+            <h3>{{ project.titulo }}</h3>
+            <p><strong>Descripción:</strong> {{ project.descripcion }}</p>
+            <p><strong>Fecha de inicio:</strong> {{ project.fecha_inicio | date }}</p>
+            <p><strong>Fecha de entrega:</strong> {{ project.fecha_entrega | date }}</p>
+            <p><strong>Estado:</strong> {{ project.estado }}</p>
+            <button (click)="deleteProject(project.id!)" >eliminar proyecto</button>
+          </li>
+        </ul>
+      </div>
+      <ng-template #noProjects>
+        <p>No tienes proyectos asignados.</p>
+      </ng-template>
+    </section>
+  </div>

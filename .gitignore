@@ -1,0 +1,8 @@
+vendor/
+.env
+
+node_modules/
+
+.DS_store
+
+.angular

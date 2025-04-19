@@ -1,0 +1,67 @@
+<div class="form-container">
+    <h2>Crear Proyecto</h2>
+  
+    <form (ngSubmit)="onSubmit()" #projectForm="ngForm">
+  
+      <div class="form-group">
+        <label for="titulo">Título</label>
+        <input
+          type="text"
+          id="titulo"
+          name="titulo"
+          [(ngModel)]="project.titulo"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea
+          id="descripcion"
+          name="descripcion"
+          [(ngModel)]="project.descripcion"
+          required
+        ></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="fecha_inicio">Fecha de Inicio</label>
+        <input
+          type="date"
+          id="fecha_inicio"
+          name="fecha_inicio"
+          [(ngModel)]="project.fecha_inicio"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="fecha_entrega">Fecha de Entrega</label>
+        <input
+          type="date"
+          id="fecha_entrega"
+          name="fecha_entrega"
+          [(ngModel)]="project.fecha_entrega"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="estado">Estado</label>
+        <select
+          id="estado"
+          name="estado"
+          [(ngModel)]="project.estado"
+          required
+        >
+          <option value="">Selecciona un estado</option>
+          <option value="activo">Activo</option>
+          <option value="en progreso">En Progreso</option>
+          <option value="completado">Completado</option>
+        </select>
+      </div>
+  
+  
+      <button type="submit">Crear Proyecto</button>
+    </form>
+  </div>
