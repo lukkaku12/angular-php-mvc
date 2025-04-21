@@ -1,1 +1,12 @@
-<p>files works!</p>
+<h2>Gestión de Archivos</h2>
+
+<input type="file" multiple (change)="onFileSelected($event)" />
+<button (click)="subirArchivos()">Subir</button>
+
+<ul>
+  <li *ngFor="let file of archivos">
+    {{ file }}
+    <button (click)="descargar(file)">Descargar</button>
+    <button (click)="eliminar(file)">Eliminar</button>
+  </li>
+</ul>

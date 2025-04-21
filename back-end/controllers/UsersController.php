@@ -10,8 +10,10 @@ class UsersController
     private $JwtAuth;
     public function __construct()
     {
+        // conn es un acoplamiento invisible para poder instanciar User
         global $conn;
         $this->User = new User($conn);
+         // no seria ideal para futura programacion si se crea mas clases. idealmente usar DI (Dependency Inyection)
         $this->JwtAuth = new JwtAuth();
     }
 

@@ -13,6 +13,8 @@
             <p><strong>Fecha de entrega:</strong> {{ project.fecha_entrega | date }}</p>
             <p><strong>Estado:</strong> {{ project.estado }}</p>
             <button (click)="deleteProject(project.id!)" >eliminar proyecto</button>
+            <button (click)="goEditProject(project.id!)" >editar proyecto</button>
+            <button (click)="verArchivos(project.id!)">ver archivos</button>
           </li>
         </ul>
       </div>

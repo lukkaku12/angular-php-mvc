@@ -11,8 +11,10 @@ class ProjectsController
 
     public function __construct()
     {
+        // conn es un acoplamiento invisible para poder instanciar project
         global $conn;
         $this->project = new Project($conn);
+        // no seria ideal para futura programacion si se crea mas clases. idealmente usar DI (Dependency Inyection)
         $this->jwtAuth = new JwtAuth();
     }
 

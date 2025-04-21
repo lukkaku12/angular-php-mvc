@@ -1,0 +1,24 @@
+<h2>Editar Proyecto</h2>
+
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <label for="titulo">Título:</label>
+  <input id="titulo" type="text" formControlName="titulo" />
+
+  <label for="descripcion">Descripción:</label>
+  <textarea id="descripcion" formControlName="descripcion"></textarea>
+
+  <label for="fecha_inicio">Fecha de Inicio:</label>
+  <input id="fecha_inicio" type="date" formControlName="fecha_inicio" />
+
+  <label for="fecha_entrega">Fecha de Entrega:</label>
+  <input id="fecha_entrega" type="date" formControlName="fecha_entrega" />
+
+  <label for="estado">Estado:</label>
+  <select id="estado" formControlName="estado">
+    <option value="pendiente">Pendiente</option>
+    <option value="en progreso">En progreso</option>
+    <option value="completado">Completado</option>
+  </select>
+
+  <button type="submit" [disabled]="editForm.invalid">Guardar Cambios</button>
+</form>

@@ -3,12 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FilesComponent } from './files/files.component';
 import { ProjectsComponent } from './projects/components/projects.component';
 import { CreateProjectComponent } from './projects/components/create-project.component';
+import { EditProjectComponent } from './projects/components/edit-project.component';
 
 const routes: Routes = [
-  {
-    path: 'files',
-    component: FilesComponent
-  },
   {
     path: 'projects',
     component: ProjectsComponent,
@@ -16,6 +13,14 @@ const routes: Routes = [
   {
     path: 'projects/create',
     component: CreateProjectComponent
+  },
+  {
+    path: 'projects/update/:id',
+    component: EditProjectComponent
+  },
+  {
+    path: 'projects/:id/files',
+    component: FilesComponent
   }
 ];
 

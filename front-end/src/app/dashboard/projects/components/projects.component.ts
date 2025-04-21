@@ -38,4 +38,13 @@ export class ProjectsComponent implements OnInit {
     this.dashboardService.deleteProject(projectId).subscribe()
     this.userProjects()
   }
+
+  public goEditProject(projectId: number) {
+    //pendiente por conectarme con el endpoint de eliminar proyectos, hacer observable.
+    this.router.navigate(['dashboard/projects/update',projectId])
+  }
+
+  verArchivos(projectId: number) {
+    this.router.navigate(['/dashboard/projects', projectId, 'files']);
+  }
 }

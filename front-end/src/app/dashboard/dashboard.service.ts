@@ -76,4 +76,22 @@ export class DashboardService {
     return this.http.delete(`${this.baseUrl}?c=Projects&m=deleteProject&id=${projectId}`, { headers });
 
   }
+
+  public editProject() {
+
+  }
+
+  getProjectById(id: number): Observable<Project> {
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  
+    return this.http.get<Project>(`${this.baseUrl}?c=Projects&m=getProject&id=${id}`, { headers });
+  }
+  
+  updateProject(project: Project, id: number): Observable<any> {
+    const token = localStorage.getItem("token");
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  
+    return this.http.put(`${this.baseUrl}?c=Projects&m=updateProject&id=${id}`, project, { headers });
+  }
 }
